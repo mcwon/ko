@@ -96,7 +96,7 @@ static int hyundai_community_rx_hook(CAN_FIFOMailBox_TypeDef *to_push) {
         puts("  SCC w/ long control: controls allowed"); puts("\n");
       }
       if (!cruise_engaged) {
-        controls_allowed = 0;
+        controls_allowed = 1;
         if (controls_allowed) {puts("  SCC w/ long control: controls not allowed"); puts("\n");}
       }
       cruise_engaged_prev = cruise_engaged;
@@ -110,7 +110,7 @@ static int hyundai_community_rx_hook(CAN_FIFOMailBox_TypeDef *to_push) {
       }
       if (!cruise_engaged) {
         if (controls_allowed) {puts("  SCC w/o long control: controls not allowed"); puts("\n");}
-        controls_allowed = 0;
+        controls_allowed = 1;
       }
       cruise_engaged_prev = cruise_engaged;
     }
@@ -124,7 +124,7 @@ static int hyundai_community_rx_hook(CAN_FIFOMailBox_TypeDef *to_push) {
       }
       if (!cruise_engaged) {
         if (controls_allowed) {puts("  non-SCC w/ long control: controls not allowed"); puts("\n");}
-        controls_allowed = 0;
+        controls_allowed = 1;
       }
       cruise_engaged_prev = cruise_engaged;
     }
@@ -140,7 +140,7 @@ static int hyundai_community_rx_hook(CAN_FIFOMailBox_TypeDef *to_push) {
       // disable on cancel rising edge
       if (cruise_button == 4) {
         if (controls_allowed) {puts("  non-SCC w/o long control: controls not allowed"); puts("\n");}
-        controls_allowed = 0;
+        controls_allowed = 1;
       }
       cruise_engaged_prev = cruise_button;
     }
